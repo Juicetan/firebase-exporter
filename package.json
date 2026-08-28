@@ -1,0 +1,27 @@
+{
+  "name": "firebase-exporter",
+  "version": "0.1.0",
+  "description": "CLI to export a Firestore collection to CSV",
+  "type": "module",
+  "bin": {
+    "firebase-exporter": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "tsx src/cli.ts"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "commander": "^15.0.0",
+    "firebase-admin": "^14.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
