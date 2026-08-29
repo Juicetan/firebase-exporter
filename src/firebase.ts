@@ -8,7 +8,19 @@ type ServiceAccountKey = {
   private_key?: string;
 };
 
-export function initFirestore(keyFile: string, projectId?: string): Firestore {
+export function resolveDatabaseId(databaseId?: string): string {
+  const trimmed = databaseId?.trim() ?? "";
+  if (!trimmed || trimmed === "default") {
+    return "(default)";
+  }
+  return trimmed;
+}
+
+export function initFirestore(
+  keyFile: string,
+  projectId?: string,
+  databaseId?: string,
+): Firestore {
   const raw = readFileSync(keyFile, "utf8");
   const credentials = JSON.parse(raw) as ServiceAccountKey;
 
@@ -30,5 +42,5 @@ export function initFirestore(keyFile: string, projectId?: string): Firestore {
     projectId: resolvedProjectId,
   });
 
-  return getFirestore(app);
+  return getFirestore(app, resolveDatabaseId(databaseId));
 }

@@ -1,8 +1,17 @@
 node_modules/
 dist/
 *.csv
-*-firebase-adminsdk-*.json
-agentic-mc-*.json
-mapping-*.json
 .env
 .env.*
+.clasp.json
+
+# Service account keys and other local credentials
+*-firebase-adminsdk-*.json
+*service-account*.json
+*serviceaccount*.json
+*credentials*.json
+sa.json
+*-key.json
+
+# Local column-mapping files (may describe private schemas)
+mapping-*.json

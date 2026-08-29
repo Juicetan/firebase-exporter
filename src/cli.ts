@@ -14,15 +14,17 @@ program
   .requiredOption("-c, --collection <id>", "Top-level collection ID")
   .requiredOption("-o, --out <path>", "Output CSV path")
   .option("-p, --project <id>", "Override project id from the key file")
+  .option("-d, --database <id>", "Firestore database ID (default: (default))")
   .option("-t, --transform <path>", "JSON mapping of DB fields to CSV columns")
   .action(async (options: {
     keyFile: string;
     collection: string;
     out: string;
     project?: string;
+    database?: string;
     transform?: string;
   }) => {
-    const db = initFirestore(options.keyFile, options.project);
+    const db = initFirestore(options.keyFile, options.project, options.database);
     const records = await exportCollection(db, options.collection);
     const transform = options.transform ? loadTransform(options.transform) : undefined;
     const rows = transform ? applyTransform(records, transform) : records;
